@@ -1,0 +1,85 @@
+﻿@model CmsShoppingCart.Models.ViewModels.Pages.PageVm
+
+@{
+    ViewBag.Title = "AddPage";
+}
+
+<h2>AddPage</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="success alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>PageVm</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Slug, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Slug)
+                @Html.ValidationMessageFor(model => model.Slug)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Body)
+                @Html.ValidationMessageFor(model => model.Body)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Sorting, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sorting)
+                @Html.ValidationMessageFor(model => model.Sorting)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HasSideBar, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HasSideBar)
+                @Html.ValidationMessageFor(model => model.HasSideBar)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("Body");
+    </script>
+}
+
+

@@ -1,0 +1,102 @@
+﻿@model CmsShoppingCart.Models.ViewModels.Shop.ProductVm
+
+@{
+    ViewBag.Title = "Add Category";
+}
+
+<h2>Add Category</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="success alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@using (Html.BeginForm("AddProduct", "Shop", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price)
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Category</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CategoryId, Model.Categories, "Select Category", new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Product Image</label>
+            <div class="col-md-10">
+                <input type="file" name="file" id="UploadImage"/>
+                <img id="imagePreview" src="#"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add Product" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Products")
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            function readUrl(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('#imagePreview').attr('src', e.target.result)
+                            .width(200)
+                            .height(200);
+
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            };
+
+            $('#UploadImage').change(function() {
+                readUrl(this);
+            });
+        })
+    </script>
+}

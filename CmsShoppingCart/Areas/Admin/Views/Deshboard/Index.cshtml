@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Deshboard";
+}
+
+<h2>Deshboard</h2>
+<style>
+    .c {
+        width: 1000px;
+        height: 100vh;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    body {
+        background: #fcfcfc;
+    }
+
+    .imgContainer {
+        float: right;
+        width: calc(100% - 336px);
+        object-fit: cover;
+        height: 400px;
+        margin: 20px 0px 20px;
+    }
+
+        .imgContainer img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+    .thumbImages {
+        width: 322px;
+        height: auto;
+        padding: 10px;
+        float: left;
+        cursor: pointer;
+    }
+
+        .thumbImages img {
+            width: 45%;
+            float: left;
+            object-fit: cover;
+            margin-top: 20px;
+        }
+
+            .thumbImages img:nth-child(odd) {
+                float: right;
+            }
+</style>
+<div class="c">
+
+    <div class="thumbImages">
+
+        <img src="~/Img/img32.jpeg" />
+        <img src="~/Img/img34.jpeg" />
+        <img src="~/Img/img44.jpeg" />
+        <img src="~/Img/sandra-seitamaa-1218811-unsplash.jpg" />
+        <img src="~/Img/photo-1550602257-cca7da5fc3f4.jpeg" />
+        <img src="~/Img/photo-1551847677-dc82d764e1eb.jpeg" />
+        <img src="~/Img/photo-1538851021258-7d938d534c89.jpeg" />
+        <img src="~/Img/photo-1540971541723-1e7331bac2d7.jpeg" />
+        <img src="~/Img/photo-1546635834-78554e816d55.jpeg" />
+        <img src="~/Img/sandra-seitamaa-1218811-unsplash.jpg" />
+    </div>
+
+    <div class="imgContainer">
+        <img src="~/Img/sandra-seitamaa-1218811-unsplash.jpg" />
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var mainImg = $(".imgContainer img").attr("src");
+        $('.thumbImages img').mouseover(function() {
+            var thisImg = $(this).attr("src");
+            $(".imgContainer img").attr("src", thisImg);
+        })
+    })
+</script>

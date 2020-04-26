@@ -1,0 +1,25 @@
+﻿.table.sorting:not(.home) {
+    cursor: move;
+}
+
+.ui-state-highlight {
+    border: 1px dashed #ccc;
+}
+
+div.newCategory {
+    margin-top: 30px;
+    position: relative;
+}
+
+input#newCategoryName {
+    
+}
+a#newCategoryAnchor {
+    
+}
+span.ajaxText {
+    display: none;
+}
+.ajaxDivTd {
+    position: absolute;
+}
